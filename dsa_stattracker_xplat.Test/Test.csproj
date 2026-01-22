@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UI\dsa-battle-tracker.csproj" />
+    <ProjectReference Include="..\dsa_stattracker_xplat\dsa_stattracker_xplat.csproj" />
   </ItemGroup>
 
 </Project>

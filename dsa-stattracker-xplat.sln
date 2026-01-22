@@ -3,22 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dsa-stattracker-xplat", "dsa-stattracker-xplat\dsa-stattracker-xplat.csproj", "{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dsa_stattracker_xplat", "dsa_stattracker_xplat\dsa_stattracker_xplat.csproj", "{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dsa-stattracker-xplat.Desktop", "dsa-stattracker-xplat.Desktop\dsa-stattracker-xplat.Desktop.csproj", "{ABC31E74-02FF-46EB-B3B2-4E6AE43B456C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dsa_stattracker_xplat.Desktop", "dsa_stattracker_xplat.Desktop\dsa_stattracker_xplat.Desktop.csproj", "{ABC31E74-02FF-46EB-B3B2-4E6AE43B456C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dsa-stattracker-xplat.Browser", "dsa-stattracker-xplat.Browser\dsa-stattracker-xplat.Browser.csproj", "{1C1A049E-235C-4CD0-B6FA-D53AC418F4DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dsa_stattracker_xplat.Browser", "dsa_stattracker_xplat.Browser\dsa_stattracker_xplat.Browser.csproj", "{1C1A049E-235C-4CD0-B6FA-D53AC418F4DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dsa-stattracker-xplat.Android", "dsa-stattracker-xplat.Android\dsa-stattracker-xplat.Android.csproj", "{7AD1DAC8-7FBE-49D5-8614-7321233DB82E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dsa_stattracker_xplat.Android", "dsa_stattracker_xplat.Android\dsa_stattracker_xplat.Android.csproj", "{7AD1DAC8-7FBE-49D5-8614-7321233DB82E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DA99C4E-89E3-4049-9C22-0A7EC60D83D8}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dsa-stattracker-xplat.Test", "dsa-stattracker-xplat.Test", "{7304C15F-3D11-C30E-EF21-4B61DD58727E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dsa_stattracker_xplat.Test", "dsa_stattracker_xplat.Test", "{7304C15F-3D11-C30E-EF21-4B61DD58727E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "dsa-stattracker-xplat.Test\Test.csproj", "{57D82BDA-0997-40C3-B2C8-9CC1B7C607C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "dsa_stattracker_xplat.Test\Test.csproj", "{57D82BDA-0997-40C3-B2C8-9CC1B7C607C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Browser;
-using dsa-stattracker-xplat;
+using dsa_stattracker_xplat;
 
 internal sealed partial class Program
 {

@@ -3,15 +3,15 @@ using Android.Content.PM;
 using Avalonia;
 using Avalonia.Android;
 
-namespace dsa-stattracker-xplat.Android;
+namespace dsa_stattracker_xplat.Android;
 
 [Activity(
-    Label = "dsa-stattracker-xplat.Android",
+    Label = "dsa_stattracker_xplat.Android",
     Theme = "@style/MyTheme.NoActionBar",
     Icon = "@drawable/icon",
     MainLauncher = true,
     ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.UiMode)]
-public class MainActivity : AvaloniaMainActivity<App>
+public class MainActivity : AvaloniaMainActivity<dsa_battle_tracker.App>
 {
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
     {

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Browser;
-using dsa_stattracker_xplat;
 
 internal sealed partial class Program
 {
@@ -11,5 +10,5 @@ internal sealed partial class Program
             .StartBrowserAppAsync("out");
 
     public static AppBuilder BuildAvaloniaApp()
-        => AppBuilder.Configure<App>();
+        => AppBuilder.Configure<dsa_battle_tracker.App>();
 }

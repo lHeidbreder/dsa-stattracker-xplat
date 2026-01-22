@@ -4,15 +4,10 @@ using dsa_battle_tracker.Models;
 
 namespace dsa_battle_tracker.Views;
 
-public partial class MainWindow : Window
+public partial class MainWindow : UserControl
 {
     public MainWindow()
     {
         InitializeComponent();
-    }
-
-    protected override void OnClosing(WindowClosingEventArgs e)
-    {
-        Config.Instance.Save();
     }
 }

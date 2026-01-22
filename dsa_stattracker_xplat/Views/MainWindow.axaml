@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:dsa_battle_tracker.ViewModels"
         xmlns:local="using:dsa_battle_tracker.Views"
@@ -7,12 +7,12 @@
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
         x:Class="dsa_battle_tracker.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Width="600"
-        Height="800"
-        Title="DSA Stattracker"
         Name="Main"
         >
+
+    <UserControl.DataContext>
+        <vm:MainWindowViewModel />
+    </UserControl.DataContext>
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -193,4 +193,4 @@
     </TabItem>
     </TabControl>
 
-</Window>
+</UserControl>

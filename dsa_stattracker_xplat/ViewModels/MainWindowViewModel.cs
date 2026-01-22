@@ -22,6 +22,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         if (window.Value is null)
             throw new Exception("Kein Fenster gefunden");
+            //FIXME: show messagebox instead
 
         Uri _filepath = new("file://" + Config.Instance.CharSaveLoadStartpath);
         IStorageFolder? startpath = await App.MainWindow!.StorageProvider.TryGetFolderFromPathAsync(_filepath);

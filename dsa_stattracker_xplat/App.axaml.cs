@@ -25,11 +25,16 @@ public partial class App : Application
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = new MainWindowViewModel(),
-            };
-            MainWindow = desktop.MainWindow;
+            
+            MainWindow = new DesktopHostWindow{};
+            desktop.MainWindow = MainWindow;
+        } 
+        
+        if (ApplicationLifetime is ISingleViewApplicationLifetime singleview)
+        {
+            //MainWindow = new MainWindow{};
+            //singleview.MainView = MainWindow;
+            singleview.MainView = new MainWindow{};
         }
 
         base.OnFrameworkInitializationCompleted();

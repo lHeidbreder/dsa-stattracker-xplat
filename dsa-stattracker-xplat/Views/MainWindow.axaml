@@ -1,0 +1,196 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:dsa_battle_tracker.ViewModels"
+        xmlns:local="using:dsa_battle_tracker.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
+        x:Class="dsa_battle_tracker.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Width="600"
+        Height="800"
+        Title="DSA Stattracker"
+        Name="Main"
+        >
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <TabControl>
+    <TabItem Header="Stattracker" Name="Stattracker">
+    <!--CONTENT-->
+    <Grid RowDefinitions="0.1*,*,0.1*" HorizontalAlignment="Stretch">
+        <Grid.Styles>
+            <Style Selector=":is(ContentControl)">
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+            </Style>
+        </Grid.Styles>
+    
+        <!--Menüband-->
+        <Border Padding="6">
+            <DockPanel>
+                <Menu DockPanel.Dock="Left">
+                    <Menu.Styles>
+                        <Style Selector="MenuItem">
+                            <Setter Property="FontSize" Value="15" />
+                        </Style>
+                    </Menu.Styles>
+                    <MenuItem Header="☰" FontSize="28" VerticalAlignment="Stretch" >
+                        <MenuItem Header="Sortieren (INI)" Command="{Binding INISort}" />
+                        <MenuItem Header="Sortieren (Alphabetisch)" Command="{Binding AlphaSort}" />
+                        <Separator />
+                        <MenuItem Header="Liste speichern..." Command="{Binding SaveList}" />
+                        <MenuItem Header="Liste laden..." Command="{Binding LoadList}" />
+                    </MenuItem>
+                </Menu>
+            </DockPanel>
+        </Border>
+        
+        <!--Charaktere-->
+        <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch">
+        <ItemsControl ItemsSource="{Binding Chars}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="2">
+                    <Expander>
+                        <Expander.Header>
+                            <Grid ColumnDefinitions="*,Auto,Auto,Auto,Auto">
+                                <Grid.Styles>
+                                    <Style Selector="Label">
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+                                    <Style Selector="NumericUpDown TextBox">
+                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                    </Style>
+                                </Grid.Styles>
+
+                                <Label Content="{Binding Name}" />
+                                <Label Content="INI:" Grid.Column="1" />
+                                <NumericUpDown Value="{Binding Ini}" ShowButtonSpinner="False" Grid.Column="2" />
+                                <Label Content="INI Basis:" Grid.Column="3" />
+                                <NumericUpDown Value="{Binding IniBase}" ShowButtonSpinner="False" Grid.Column="4" />
+                            </Grid>
+                        </Expander.Header>
+                        <Expander.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Speichern"
+                                    Command="{Binding #Main.DataContext.QuickSaveChar}"
+                                    CommandParameter="{Binding}"
+                                    />
+                                <MenuItem Header="Speichern unter..."
+                                    Command="{Binding #Main.DataContext.SaveChar}"
+                                    CommandParameter="{Binding}"
+                                    />
+                                <MenuItem Header="Entfernen"
+                                    Command="{Binding #Main.DataContext.RemoveChar}"
+                                    CommandParameter="{Binding}"
+                                    />
+                            </ContextMenu>
+                        </Expander.ContextMenu>
+                        <StackPanel>
+                            <TextBox Text="{Binding Name, Mode=TwoWay}" />
+                            <StackPanel.Styles>
+                                <Style Selector="NumericUpDown">
+                                    <Setter Property="ParsingNumberStyle" Value="Integer" />
+                                    <Setter Property="FormatString" Value="0" />
+                                    <Setter Property="Minimum" Value="0" />
+                                </Style>
+                                <Style Selector="Label">
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <!--
+                                    <Setter Property="HorizontalContentAlignment" Value="Right" />
+                                -->
+                                </Style>
+                            </StackPanel.Styles>
+
+                            <UniformGrid Name="Stats" Columns="3">
+                                <Label Content="LE:" />
+                                    <NumericUpDown Value="{Binding LE, Mode=TwoWay}" Minimum="-9999" />
+                                    <NumericUpDown Value="{Binding MaxLE, Mode=TwoWay}" />
+                                <Label Content="AU:" />
+                                    <NumericUpDown Value="{Binding AU, Mode=TwoWay}" />
+                                    <NumericUpDown Value="{Binding MaxAU, Mode=TwoWay}" />
+                                <Label Content="AE:" />
+                                    <NumericUpDown Value="{Binding AE, Mode=TwoWay}" />
+                                    <NumericUpDown Value="{Binding MaxAE, Mode=TwoWay}" />
+                                <Label Content="KE:" />
+                                    <NumericUpDown Value="{Binding KE, Mode=TwoWay}" />
+                                    <NumericUpDown Value="{Binding MaxKE, Mode=TwoWay}" />
+                            </UniformGrid>
+                            
+                            <UniformGrid Columns="2">
+                                <Label Content="Erschöpfung:" />
+                                    <NumericUpDown Value="{Binding Exhaustion, Mode=TwoWay}" />
+                                <Label Content="Überanstrengung:" />
+                                    <NumericUpDown Value="{Binding Overexertion, Mode=TwoWay}" />
+                                <Label Content="Entrückung:" />
+                                    <NumericUpDown Value="{Binding Rapture, Mode=TwoWay}" />
+                            </UniformGrid>
+                        </StackPanel>
+                    </Expander>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        </ScrollViewer>
+
+        <!--Buttons Laden/Neu eingeben-->
+        <UniformGrid Grid.Row="2" Columns="2">
+            <UniformGrid.Styles>
+                <Style Selector="Button">
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </UniformGrid.Styles>
+
+            <Button Content="{Binding LoadButtonContent}" Command="{Binding LoadCharacter}" />
+            <Button Content="{Binding NewButtonContent}" Command="{Binding NewCharacter}" />
+        </UniformGrid>
+    </Grid>
+    </TabItem>
+
+    <TabItem Header="{Binding CounterTab}" Name="{Binding CounterTab}">
+        <Grid RowDefinitions="*,Auto">
+            <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding Players}" IsTabStop="False" KeyboardNavigation.TabNavigation="Continue">
+                <ItemsControl.Styles>
+                    <Style Selector="ListBoxItem">
+                        <Setter Property="IsTabStop" Value="False"/>
+                    </Style>
+                </ItemsControl.Styles>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="2">
+                        <Grid ColumnDefinitions="3*,Auto,2*,Auto,2*">
+                            <TextBox Text="{Binding Name, Mode=TwoWay}" />
+                            <Label Content="Einsen:" Grid.Column="1" />
+                            <NumericUpDown Value="{Binding Einsen, Mode=TwoWay}" Minimum="0" ParsingNumberStyle="Integer" FormatString="0" Grid.Column="2" />
+                            <Label Content="Zwanzigen:" Grid.Column="3" />
+                            <NumericUpDown Value="{Binding Zwanzigen, Mode=TwoWay}" Minimum="0" ParsingNumberStyle="Integer" FormatString="0" Grid.Column="4" />
+                        </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            </ScrollViewer>
+            <UniformGrid Columns="3" Grid.Row="1">
+                <Button Content="Speichern" Command="{Binding SavePlayers}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                <Button Content="+" Command="{Binding AddPlayer}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                <Button Content="Laden" Command="{Binding LoadPlayers}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            </UniformGrid>
+        </Grid>
+    </TabItem>
+
+    <TabItem Header="{Binding ModifiersTab}" Name="{Binding ModifiersTab}">
+        <local:ModifiersView />
+    </TabItem>
+    </TabControl>
+
+</Window>

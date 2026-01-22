@@ -1,0 +1,327 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:dsa_battle_tracker.ViewModels"
+             xmlns:rs="using:RangeSlider.Avalonia.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="dsa_battle_tracker.Views.ModifiersView"
+             x:DataType="vm:ModifiersViewModel"
+             >
+  <Border>
+  <TabControl>
+    <TabControl.Styles>
+      <Style Selector="ComboBox">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+      </Style>
+    </TabControl.Styles>
+
+    <TabItem Header="{Binding Header_Melee}">
+      <TabItem.ContextMenu>
+        <ContextMenu>
+          <MenuItem
+            Header="Reset"
+            Command="{Binding Reset_Melee}"
+            />
+        </ContextMenu>
+      </TabItem.ContextMenu>
+
+      <UniformGrid Columns="2">
+        <UniformGrid.Styles>
+          <Style Selector="Label">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+          </Style>
+          <Style Selector="ComboBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+          </Style>
+        </UniformGrid.Styles>
+
+        <!--Reach-->
+        <Label Content="{Binding Label_OwnReach}" />
+        <Grid ColumnDefinitions="3*,*">
+          <rs:RangeSlider Minimum="0" Maximum="3"
+              LowerSelectedValue="{Binding LowerOwnDK, Mode=TwoWay}"
+              UpperSelectedValue="{Binding UpperOwnDK, Mode=TwoWay}"
+              TickFrequency="1"
+              IsSnapToTickEnabled="True"
+              IsThumbOverlap="True"
+              />
+          <Label Content="{Binding PrintedWeaponDK}"
+              HorizontalAlignment="Stretch"
+              HorizontalContentAlignment="Center"
+              BorderBrush="DimGray"
+              BorderThickness="2"
+              Margin="4"
+              Grid.Column="1"
+              />
+        </Grid>
+        <Label Content="{Binding Label_ActualReach}" />
+        <ComboBox ItemsSource="{Binding DK_Options}" SelectedItem="{Binding ActualDK, Mode=TwoWay}" />
+        
+        <!--Target Location-->
+        <Label Content="{Binding Label_TargetLocation}" />
+        <ComboBox ItemsSource="{Binding HitLocations}" SelectedItem="{Binding TargetedLocation, Mode=TwoWay}" />
+
+        <!--Darkness-->
+        <Label Content="{Binding Label_DarknessModifier}" />
+        <ComboBox ItemsSource="{Binding DarknessModifiers}" SelectedItem="{Binding LightLevel, Mode=TwoWay}" />
+
+        <!--Close Quarters-->
+        <Label Content="{Binding Label_CloseQuartersModifier}" />
+        <ComboBox ItemsSource="{Binding CQC_Modifiers}" SelectedItem="{Binding CQC, Mode=TwoWay}" />
+
+        <!--Position-->
+        <Label Content="{Binding Label_TargetPosition}" />
+        <ComboBox ItemsSource="{Binding Position_Modifiers}" SelectedItem="{Binding TargetPosition, Mode=TwoWay}" />
+        <Label Content="{Binding Label_OwnPosition}" />
+        <ComboBox ItemsSource="{Binding Position_Modifiers}" SelectedItem="{Binding OwnPosition, Mode=TwoWay}" />
+
+        <!--Offhand-->
+        <Label Content="{Binding Label_OffhandAbility}" />
+        <ComboBox ItemsSource="{Binding OffhandAbilities}" SelectedItem="{Binding OffhandAbility, Mode=TwoWay}" />
+        <Label Content="{Binding Label_IsOffhand}" />
+        <CheckBox IsChecked="{Binding IsOffhand, Mode=TwoWay}" />
+
+        <!--Surprise-->
+        <Label Content="{Binding Label_TargetSurpriseLevel}" />
+        <ComboBox ItemsSource="{Binding SurpriseLevels}" SelectedItem="{Binding TargetSurprise}" />
+
+        <!--Numbers-->
+        <Label Content="{Binding Label_OutnumberedLevel}" />
+        <ComboBox ItemsSource="{Binding OutnumberedLevels}" SelectedItem="{Binding Outnumbered}" />
+
+        <!--Sums-->
+        <Border HorizontalAlignment="Stretch"
+            DockPanel.Dock="Bottom"
+            BorderThickness="2"
+            BorderBrush="DimGray"
+            Padding="2"
+            Margin="2"
+            >
+          <Label Content="{Binding Sum_AT_Mod}" HorizontalAlignment="Center" />
+        </Border>
+        <Border HorizontalAlignment="Stretch"
+            DockPanel.Dock="Bottom"
+            BorderThickness="2"
+            BorderBrush="DimGray"
+            Padding="2"
+            Margin="2"
+            >
+          <Label Content="{Binding Sum_PA_Mod}" HorizontalAlignment="Center" />
+        </Border>
+      </UniformGrid>
+    </TabItem>
+    <TabItem Header="{Binding Header_Ranged}">
+      <DockPanel>
+        <Border HorizontalAlignment="Stretch"
+            DockPanel.Dock="Bottom"
+            BorderThickness="2"
+            BorderBrush="DimGray"
+            Padding="2"
+            Margin="2"
+            >
+          <Label Content="{Binding Sum_FK_Mod}" HorizontalAlignment="Center" />
+        </Border>
+        <ScrollViewer DockPanel.Dock="Top">
+        <StackPanel>
+          <StackPanel.Styles>
+            <Style Selector="Expander, ComboBox">
+              <Setter Property="HorizontalAlignment" Value="Stretch" />
+            </Style>
+          </StackPanel.Styles>
+
+          <Expander Header="{Binding Label_Shooter}">
+            <UniformGrid Columns="2">
+              <Label Content="{Binding Label_HasDistanceSense}" />
+              <CheckBox IsChecked="{Binding HasDistanceSense, Mode=TwoWay}" />
+              <Label Content="{Binding Label_WeaponType}" />
+              <ComboBox ItemsSource="{Binding AllWeaponTypes}" SelectedItem="{Binding WeaponType, Mode=TwoWay}" />
+              <Label Content="{Binding Label_RangedAbility}" />
+              <ComboBox ItemsSource="{Binding AllRangedAbilities}" SelectedItem="{Binding RangedAbility, Mode=TwoWay}" />
+            </UniformGrid>
+          </Expander>
+          <Expander Header="{Binding Label_Aiming}">
+            <UniformGrid Columns="2">
+              <Label Content="{Binding Label_Quickshot}" />
+              <CheckBox IsChecked="{Binding IsQuickshot, Mode=TwoWay}" />
+              <Label Content="{Binding Label_Aiming}" />
+              <NumericUpDown Value="{Binding AimingTime, Mode=TwoWay}" Minimum="0" FormatString="0" ParsingNumberStyle="Integer" />
+            </UniformGrid>
+          </Expander>
+          <Expander Header="{Binding Label_Target}">
+            <UniformGrid Columns="2">
+              <Label Content="{Binding Label_TargetSize}" />
+              <ComboBox ItemsSource="{Binding AllRangedTargetSizes}" SelectedItem="{Binding RangedTargetSize, Mode=TwoWay}" />
+              <Label Content="{Binding Label_TargetCover}" />
+              <ComboBox ItemsSource="{Binding AllCoverModifiers}" SelectedItem="{Binding RangedTargetCover, Mode=TwoWay}" />
+              <Label Content="{Binding Label_Movement}" />
+              <ComboBox ItemsSource="{Binding AllMovementModifiers}" SelectedItem="{Binding RangedTargetMovement, Mode=TwoWay}" />
+              <Label Content="{Binding Label_CombatantsInH}" />
+              <NumericUpDown Value="{Binding CombatantsInH, Mode=TwoWay}" Minimum="0" FormatString="0" ParsingNumberStyle="Integer" />
+              <Label Content="{Binding Label_CombatantsInNS}" />
+              <NumericUpDown Value="{Binding CombatantsInNS, Mode=TwoWay}" Minimum="0" FormatString="0" ParsingNumberStyle="Integer" />
+            </UniformGrid>
+          </Expander>
+          <Expander Header="{Binding Label_Environment}">
+            <UniformGrid Columns="2">
+              <Label Content="{Binding Label_Distance}" />
+              <ComboBox ItemsSource="{Binding AllDistanceModifiers}" SelectedItem="{Binding Distance, Mode=TwoWay}" />
+              <Label Content="{Binding Label_DarknessModifier}" />
+              <ComboBox ItemsSource="{Binding AllRangedDarknessModifiers}" SelectedItem="{Binding RangedDarkness, Mode=TwoWay}" />
+              <Label Content="{Binding Label_Fog}" />
+              <ComboBox ItemsSource="{Binding AllFogModifiers}" SelectedValue="{Binding FogModifier, Mode=TwoWay}" />
+              <Label Content="{Binding Label_IsInvisible}" />
+              <CheckBox IsChecked="{Binding IsRangedTargetInvisible, Mode=TwoWay}" />
+              <Label Content="{Binding Label_Steepness}" />
+              <ComboBox ItemsSource="{Binding AllSteepnessModifiers}" SelectedItem="{Binding Steepness, Mode=TwoWay}" />
+              <Label Content="{Binding Label_Wind}" />
+              <ComboBox ItemsSource="{Binding AllWindModifiers}" SelectedItem="{Binding Wind, Mode=TwoWay}" />
+            </UniformGrid>
+          </Expander>
+          <Expander Header="{Binding Label_Other}">
+            <UniformGrid Columns="2">
+              <Label Content="{Binding Label_IsMounted}" />
+              <Grid ColumnDefinitions="Auto,*">
+                <CheckBox IsChecked="{Binding IsMounted, Mode=TwoWay}" />
+                <ComboBox ItemsSource="{Binding AllMountMovements}"
+                    SelectedItem="{Binding MountMovement, Mode=TwoWay}"
+                    Grid.Column="1"
+                    />
+              </Grid>
+              <Label Content="{Binding Label_IsSecondShot}" />
+              <CheckBox IsChecked="{Binding IsSecondShot, Mode=TwoWay}" />
+              <Label Content="{Binding Label_IsInWater}" />
+              <CheckBox IsChecked="{Binding IsInWater, Mode=TwoWay}" />
+            </UniformGrid>
+          </Expander>
+        </StackPanel>
+        </ScrollViewer>
+      </DockPanel>
+    </TabItem>
+    <TabItem Header="{Binding Header_Magic}" IsEnabled="False"><!--TODO: enable when implemented-->
+    </TabItem>
+    <TabItem Header="{Binding Header_Carmic}">
+      <DockPanel>
+        <Border HorizontalAlignment="Stretch"
+            DockPanel.Dock="Bottom"
+            BorderThickness="2"
+            BorderBrush="DimGray"
+            Padding="2"
+            Margin="2"
+            >
+          <UniformGrid Columns="3">
+            <Label Content="{Binding Sum_EffectiveGrade}" HorizontalAlignment="Center" />
+            <Label Content="{Binding Sum_CarmicMod}" HorizontalAlignment="Center" />
+            <Label Content="{Binding Sum_CarmicCost}" HorizontalAlignment="Center" />
+          </UniformGrid>
+        </Border>
+        
+        <ScrollViewer DockPanel.Dock="Top">
+          <StackPanel>
+            <StackPanel.Styles>
+              <Style Selector="Expander">
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+              </Style>
+            </StackPanel.Styles>
+
+            <Expander Header="{Binding Label_Liturgy}">
+              <UniformGrid Columns="2">
+                <Label Content="{Binding Label_Grade}" />
+                <NumericUpDown
+                    Value="{Binding CarmicGrade}"
+                    Minimum="0"
+                    FormatString="0"
+                    ParsingNumberStyle="Integer"
+                    />
+                <Label Content="{Binding Label_Upgrades}" />
+                <NumericUpDown
+                    Value="{Binding CarmicUpgrades}"
+                    Minimum="0"
+                    FormatString="0"
+                    ParsingNumberStyle="Integer"
+                    />
+                <!--Effective Grade-->
+              </UniformGrid>
+            </Expander>
+
+            <Expander Header="{Binding Label_CarmicCaster}">
+              <UniformGrid Columns="2">
+                <Label Content="{Binding Label_Desperation}" />
+                <CheckBox IsChecked="{Binding InDesperation, Mode=TwoWay}" />
+                <Label Content="{Binding Label_DivineOrders}" />
+                <ComboBox ItemsSource="{Binding AllDivineOrders}" SelectedItem="{Binding DivineOrders, Mode=TwoWay}" />
+                <Label Content="{Binding Label_FromSelfishness}" />
+                <NumericUpDown Value="{Binding FromSelfishness, Mode=TwoWay}"
+                    Minimum="0"
+                    Maximum="7"
+                    FormatString="0"
+                    ParsingNumberStyle="Integer"
+                    />
+                <Label Content="{Binding Label_MagicCompulsion}" />
+                <CheckBox IsChecked="{Binding UnderMagicCompulsion, Mode=TwoWay}" />
+                <Label Content="{Binding Label_IsCasterOathbreaker}" />
+                <ComboBox ItemsSource="{Binding AllOathbreakerModifiers}" SelectedItem="{Binding Oathbreaker, Mode=TwoWay}" />
+              </UniformGrid>
+            </Expander>
+
+            <Expander Header="{Binding Label_Area}">
+              <UniformGrid Columns="2">
+                <Label Content="{Binding Label_ConsecratedGround}" />
+                <ComboBox ItemsSource="{Binding AllConsecratedGroundModifiers}" SelectedItem="{Binding ConsecratedGround, Mode=TwoWay}" />
+                <Label Content="{Binding Label_FullOfInfidels}" />
+                <CheckBox IsChecked="{Binding FullOfInfidels, Mode=TwoWay}" />
+                <Label Content="{Binding Label_IsOtherworldly}" />
+                <CheckBox IsChecked="{Binding IsOtherworldly, Mode=TwoWay}" />
+              </UniformGrid>
+            </Expander>
+
+            <Expander Header="{Binding Label_Time}">
+              <UniformGrid Columns="2">
+                <Label Content="{Binding Label_GodsMonth}" />
+                <CheckBox IsChecked="{Binding GodsMonth, Mode=TwoWay}" />
+                <Label Content="{Binding Label_GodsHoliday}" />
+                <CheckBox IsChecked="{Binding GodsHoliday, Mode=TwoWay}" />
+                <Label Content="{Binding Label_NamelessDays}" />
+                <CheckBox IsChecked="{Binding NamelessDays, Mode=TwoWay}" />
+              </UniformGrid>
+            </Expander>
+
+            <Expander Header="{Binding Label_Target}">
+              <UniformGrid Columns="2">
+                <Label Content="{Binding Label_IsTargetOathbreaker}" />
+                <CheckBox IsChecked="{Binding TargetIsOathbreaker, Mode=TwoWay}" />
+                <Label Content="{Binding Label_TargetIsHeretic}" />
+                <CheckBox IsChecked="{Binding TargetIsHeretic, Mode=TwoWay}" />
+                <Label Content="{Binding Label_TargetHasPact}" />
+                <ComboBox ItemsSource="{Binding AllPacts}" SelectedItem="{Binding TargetPact, Mode=TwoWay}" />
+                <Label Content="{Binding Label_TargetAnathema}" />
+                <CheckBox IsChecked="{Binding TargetHasAnathema, Mode=TwoWay}" />
+              </UniformGrid>
+            </Expander>
+
+            <Expander Header="{Binding Label_Misc}">
+              <UniformGrid Columns="2">
+                <Label Content="{Binding Label_IsOrdering}" />
+                <NumericUpDown
+                    Value="{Binding OrderScale, Mode=TwoWay}"
+                    Minimum="-2"
+                    Maximum="7"
+                    FormatString="0"
+                    ParsingNumberStyle="Integer"
+                    />
+                <Label Content="{Binding Label_Assistants}" />
+                <NumericUpDown
+                    Value="{Binding Assistants, Mode=TwoWay}"
+                    Minimum="0"
+                    FormatString="0"
+                    ParsingNumberStyle="Integer"
+                    />
+              </UniformGrid>
+            </Expander>
+          </StackPanel>
+        </ScrollViewer>
+      </DockPanel>
+    </TabItem>
+  </TabControl>
+  </Border>
+</UserControl>

@@ -1,6 +1,6 @@
 using UIKit;
 
-namespace dsa_stattracker_xplat.iOS;
+namespace dsa-stattracker-xplat.iOS;
 
 public class Application
 {

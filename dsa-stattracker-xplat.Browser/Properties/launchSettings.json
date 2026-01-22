@@ -1,6 +1,6 @@
 {
     "profiles": {
-    "dsa_stattracker_xplat.Browser": {
+    "dsa-stattracker-xplat.Browser": {
         "commandName": "Project",
         "launchBrowser": true,
         "environmentVariables": {

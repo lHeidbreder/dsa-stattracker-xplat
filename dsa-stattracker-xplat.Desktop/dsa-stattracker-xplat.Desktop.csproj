@@ -22,6 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dsa_stattracker_xplat\dsa_stattracker_xplat.csproj" />
+    <ProjectReference Include="..\dsa-stattracker-xplat\dsa-stattracker-xplat.csproj" />
   </ItemGroup>
 </Project>

@@ -3,10 +3,10 @@ using Android.Content.PM;
 using Avalonia;
 using Avalonia.Android;
 
-namespace dsa_stattracker_xplat.Android;
+namespace dsa-stattracker-xplat.Android;
 
 [Activity(
-    Label = "dsa_stattracker_xplat.Android",
+    Label = "dsa-stattracker-xplat.Android",
     Theme = "@style/MyTheme.NoActionBar",
     Icon = "@drawable/icon",
     MainLauncher = true,

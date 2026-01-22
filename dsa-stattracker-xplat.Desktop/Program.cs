@@ -1,7 +1,7 @@
 ﻿using System;
 using Avalonia;
 
-namespace dsa_stattracker_xplat.Desktop;
+namespace dsa-stattracker-xplat.Desktop;
 
 sealed class Program
 {

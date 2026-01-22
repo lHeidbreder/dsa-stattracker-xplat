@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>dsa_stattracker_xplat</string>
+	<string>dsa-stattracker-xplat</string>
 	<key>CFBundleIdentifier</key>
-	<string>companyName.dsa_stattracker_xplat</string>
+	<string>companyName.dsa-stattracker-xplat</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

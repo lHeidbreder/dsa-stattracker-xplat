@@ -4,7 +4,7 @@
     <TargetFramework>net9.0-android</TargetFramework>
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
-    <ApplicationId>com.CompanyName.dsa_stattracker_xplat</ApplicationId>
+    <ApplicationId>com.CompanyName.dsa-stattracker-xplat</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
@@ -23,6 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dsa_stattracker_xplat\dsa_stattracker_xplat.csproj" />
+    <ProjectReference Include="..\dsa-stattracker-xplat\dsa-stattracker-xplat.csproj" />
   </ItemGroup>
 </Project>

@@ -8,6 +8,14 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)' != 'Debug'">
+    <PublishSingleFile>true</PublishSingleFile>
+    <DebugType>none</DebugType>
+    <IncludeSymbols>false</IncludeSymbols>
+    <SelfContained>true</SelfContained>
+  </PropertyGroup>
+
+
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>

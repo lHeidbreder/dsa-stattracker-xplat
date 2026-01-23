@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="dsa_battle_tracker.Views.DesktopHostWindow"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/Icon.png"
         Width="600"
         Height="800"
         Title="DSA Stattracker"

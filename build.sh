@@ -6,7 +6,7 @@ if [ ! -d dist/ ]; then mkdir dist; fi
 
 exportsvg () {
     echo Creating PNGs from SVGs
-    find $(dirname $0) -name '*.svg' -exec inkscape --export-type=png {} \;
+    inkscape --export-type=png $(find $(dirname $0) -name *.svg)
 }
 
 desktop () {

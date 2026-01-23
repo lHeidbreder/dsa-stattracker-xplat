@@ -1,10 +1,8 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using dsa_battle_tracker.ViewModels;
 using dsa_battle_tracker.Views;
 using Avalonia.Controls;
 
@@ -12,7 +10,8 @@ namespace dsa_battle_tracker;
 
 public partial class App : Application
 {
-    public static Window? MainWindow { get; private set; }
+    public static TopLevel? MainWindow => TopLevel.GetTopLevel(MainView);
+    public static ContentControl? MainView { get; private set; }
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -26,15 +25,15 @@ public partial class App : Application
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
             
-            MainWindow = new DesktopHostWindow{};
-            desktop.MainWindow = MainWindow;
+            desktop.MainWindow = new DesktopHostWindow{};
+            MainView = desktop.MainWindow.FindControl<MainWindow>("MainView");
         } 
         
         if (ApplicationLifetime is ISingleViewApplicationLifetime singleview)
         {
-            //MainWindow = new MainWindow{};
-            //singleview.MainView = MainWindow;
-            singleview.MainView = new MainWindow{};
+            MainView = new MainWindow{};
+            singleview.MainView = MainView;
+            //singleview.MainView = new MainWindow{};
         }
 
         base.OnFrameworkInitializationCompleted();

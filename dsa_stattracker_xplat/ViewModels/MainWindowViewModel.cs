@@ -12,7 +12,7 @@ using dsa_battle_tracker.Models;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    Lazy<Window?> window = new(() => App.MainWindow);
+    //Lazy<Window?> window = new(() => App.MainWindow);
 
     public string LoadButtonContent { get; } = "Charakter laden...";
     public string NewButtonContent { get; } = "Neuen Charakter eingeben";
@@ -20,13 +20,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task LoadCharacter()
     {
-        if (window.Value is null)
+        if (App.MainWindow is null)
             throw new Exception("Kein Fenster gefunden");
             //FIXME: show messagebox instead
 
         Uri _filepath = new("file://" + Config.Instance.CharSaveLoadStartpath);
         IStorageFolder? startpath = await App.MainWindow!.StorageProvider.TryGetFolderFromPathAsync(_filepath);
-        var path = await window.Value.StorageProvider.OpenFilePickerAsync(
+        var path = await App.MainWindow.StorageProvider.OpenFilePickerAsync(
             new FilePickerOpenOptions
             {
                 SuggestedStartLocation = startpath,
@@ -47,12 +47,12 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     public async Task LoadList()
     {
-        if (window.Value is null)
+        if (App.MainWindow is null)
             throw new Exception("Kein Fenster gefunden");
 
         Uri _filepath = new("file://" + Config.Instance.CharListSavePath);
         IStorageFolder? startpath = await App.MainWindow!.StorageProvider.TryGetFolderFromPathAsync(_filepath);
-        var path = await window.Value.StorageProvider.OpenFilePickerAsync(
+        var path = await App.MainWindow.StorageProvider.OpenFilePickerAsync(
             new FilePickerOpenOptions
             {
                 SuggestedStartLocation = startpath,
@@ -89,12 +89,12 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     public async Task SaveChar(DSACharacter c)
     {
-        if (window.Value is null)
+        if (App.MainWindow is null)
             throw new Exception("Kein Fenster gefunden");
 
         Uri _filepath = new("file://" + Config.Instance.CharSaveLoadStartpath);
         IStorageFolder? startpath = await App.MainWindow!.StorageProvider.TryGetFolderFromPathAsync(_filepath);
-        var path = await window.Value.StorageProvider.SaveFilePickerAsync(
+        var path = await App.MainWindow.StorageProvider.SaveFilePickerAsync(
             new FilePickerSaveOptions
             {
                 SuggestedStartLocation = startpath, //FIXME
@@ -109,19 +109,19 @@ public partial class MainWindowViewModel : ViewModelBase
             return;
 
         if (File.Exists(path.Path.AbsolutePath)
-            && !await Msg.OverwriteWarning(window.Value, path.Path.AbsolutePath))
+            && !await Msg.OverwriteWarning(App.MainWindow, path.Path.AbsolutePath))
             return;
 
         c.Save(path.Path.AbsolutePath);
     }
     public async Task SaveList()
     {
-        if (window.Value is null)
+        if (App.MainWindow is null)
             throw new Exception("Kein Fenster gefunden");
 
         Uri _filepath = new("file://" + Config.Instance.CharListSavePath);
         IStorageFolder? startpath = await App.MainWindow!.StorageProvider.TryGetFolderFromPathAsync(_filepath);
-        var path = await window.Value.StorageProvider.SaveFilePickerAsync(
+        var path = await App.MainWindow.StorageProvider.SaveFilePickerAsync(
             new FilePickerSaveOptions
             {
                 SuggestedStartLocation = startpath,
@@ -136,7 +136,7 @@ public partial class MainWindowViewModel : ViewModelBase
             return;
 
         if (File.Exists(path.Path.AbsolutePath)
-            && !await Msg.OverwriteWarning(window.Value, path.Path.AbsolutePath))
+            && !await Msg.OverwriteWarning(App.MainWindow, path.Path.AbsolutePath))
             return;
 
         DSACharacter.Save(Chars, path.Path.AbsolutePath);
@@ -185,7 +185,7 @@ public partial class MainWindowViewModel : ViewModelBase
         //FIXME: if not exists, show error toast, exit early
         if (!File.Exists(Config.Instance.PlayerListSavePath))
         {
-            await Msg.NoSaveData(window.Value!);
+            await Msg.NoSaveData(App.MainWindow!);
             return;
         }
 

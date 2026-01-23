@@ -4,6 +4,11 @@
 set -e
 if [ ! -d dist/ ]; then mkdir dist; fi
 
+exportsvg () {
+    echo Creating PNGs from SVGs
+    find $(dirname $0) -name '*.svg' -exec inkscape --export-type=png {} \;
+}
+
 desktop () {
     DESKTOP_PLATFORMS="linux-x64 win-x64"
 
@@ -36,6 +41,8 @@ wasm () {
 }
 
 #PERFORM
+exportsvg
+
 desktop
 android
 wasm

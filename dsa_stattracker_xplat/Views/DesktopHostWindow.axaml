@@ -11,5 +11,5 @@
         Height="800"
         Title="DSA Stattracker"
         >
-  <local:MainWindow />
+  <local:MainWindow Name="MainView" />
 </Window>

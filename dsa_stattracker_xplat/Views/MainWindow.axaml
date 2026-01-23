@@ -39,7 +39,11 @@
                             <Setter Property="FontSize" Value="15" />
                         </Style>
                     </Menu.Styles>
-                    <MenuItem Header="☰" FontSize="28" VerticalAlignment="Stretch" >
+                    <MenuItem VerticalAlignment="Center" Padding="4">
+                        <MenuItem.Header>
+                            <Image Source="avares://dsa_stattracker_xplat/Assets/burger-menu.png" />
+                        </MenuItem.Header>
+
                         <MenuItem Header="Sortieren (INI)" Command="{Binding INISort}" />
                         <MenuItem Header="Sortieren (Alphabetisch)" Command="{Binding AlphaSort}" />
                         <Separator />

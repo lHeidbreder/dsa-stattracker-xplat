@@ -21,6 +21,8 @@ desktop () {
             -o dist/$p \
             dsa_stattracker_xplat.Desktop/
     done
+
+    find $(dirname $0)/dist/ -name *.pdb -delete
 }
 
 android () {
@@ -29,6 +31,8 @@ android () {
         -c Release \
         -o dist/android \
         dsa_stattracker_xplat.Android/
+    
+    find $(dirname $0)/dist/android/ -type f -not -iname *signed.apk -delete
 }
 
 wasm () {
@@ -40,11 +44,24 @@ wasm () {
         dsa_stattracker_xplat.Browser/
 }
 
+package () {
+    pushd $(dirname $0)/dist
+
+    RELEASES=$(ls -d */)
+    for r in $RELEASES; do
+        zip -r "${r%/}.zip" . -i "${r}*"
+    done
+
+    popd
+}
+
 #PERFORM
 exportsvg
 
 desktop
 android
 wasm
+
+package
 
 echo Successfully performed!

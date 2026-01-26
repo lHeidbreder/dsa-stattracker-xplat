@@ -6,7 +6,7 @@ using Avalonia.Android;
 namespace dsa_stattracker_xplat.Android;
 
 [Activity(
-    Label = "dsa_stattracker_xplat.Android",
+    Label = "DSA Stattracker",
     Theme = "@style/MyTheme.NoActionBar",
     Icon = "@drawable/icon",
     MainLauncher = true,

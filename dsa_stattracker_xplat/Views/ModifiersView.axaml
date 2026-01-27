@@ -36,9 +36,22 @@
           </Style>
         </UniformGrid.Styles>
 
+        <Expander Header="{Binding Label_HeaderTarget}">
+        <!--Target Location-->
+        <Label Content="{Binding Label_TargetLocation}" />
+        <ComboBox ItemsSource="{Binding HitLocations}" SelectedItem="{Binding TargetedLocation, Mode=TwoWay}" />
+        
+        <!--Position-->
+        <Label Content="{Binding Label_TargetPosition}" />
+        <ComboBox ItemsSource="{Binding Position_Modifiers}" SelectedItem="{Binding TargetPosition, Mode=TwoWay}" />
+        <Label Content="{Binding Label_OwnPosition}" />
+        <ComboBox ItemsSource="{Binding Position_Modifiers}" SelectedItem="{Binding OwnPosition, Mode=TwoWay}" />
+        </Expander>
+
+        <Expander Header="{Binding Label_Environment}">
         <!--Reach-->
         <Label Content="{Binding Label_OwnReach}" />
-        <Grid ColumnDefinitions="3*,*">
+        <Grid ColumnDefinitions="*,70">
           <rs:RangeSlider Minimum="0" Maximum="3"
               LowerSelectedValue="{Binding LowerOwnDK, Mode=TwoWay}"
               UpperSelectedValue="{Binding UpperOwnDK, Mode=TwoWay}"
@@ -58,10 +71,6 @@
         <Label Content="{Binding Label_ActualReach}" />
         <ComboBox ItemsSource="{Binding DK_Options}" SelectedItem="{Binding ActualDK, Mode=TwoWay}" />
         
-        <!--Target Location-->
-        <Label Content="{Binding Label_TargetLocation}" />
-        <ComboBox ItemsSource="{Binding HitLocations}" SelectedItem="{Binding TargetedLocation, Mode=TwoWay}" />
-
         <!--Darkness-->
         <Label Content="{Binding Label_DarknessModifier}" />
         <ComboBox ItemsSource="{Binding DarknessModifiers}" SelectedItem="{Binding LightLevel, Mode=TwoWay}" />
@@ -69,12 +78,8 @@
         <!--Close Quarters-->
         <Label Content="{Binding Label_CloseQuartersModifier}" />
         <ComboBox ItemsSource="{Binding CQC_Modifiers}" SelectedItem="{Binding CQC, Mode=TwoWay}" />
+        </Expander>
 
-        <!--Position-->
-        <Label Content="{Binding Label_TargetPosition}" />
-        <ComboBox ItemsSource="{Binding Position_Modifiers}" SelectedItem="{Binding TargetPosition, Mode=TwoWay}" />
-        <Label Content="{Binding Label_OwnPosition}" />
-        <ComboBox ItemsSource="{Binding Position_Modifiers}" SelectedItem="{Binding OwnPosition, Mode=TwoWay}" />
 
         <!--Offhand-->
         <Label Content="{Binding Label_OffhandAbility}" />

@@ -9,6 +9,10 @@ public partial class ModifiersViewModel : ViewModelBase
     #region Melee
     public string Header_Melee { get; } = "Nahkampf";
     public MeleeModifierSet MeleeModifiers { get; private set; } = new();
+
+    public static string Label_HeaderReach => "DK";
+    public static string Label_HeaderTarget => "Ziel";
+    public static string Label_Environment => "Umgebung";
     public static string Label_OwnReach => "Eigene DK";
 
     public string PrintedWeaponDK {

@@ -320,7 +320,6 @@ public partial class ModifiersViewModel : ViewModelBase
     }
 
     //Sight
-    public static string Label_Environment => "Umgebung";
     public static IEnumerable<RangedModifierSet.DarknessModifiers?> AllRangedDarknessModifiers => [null, .. Enum.GetValues<RangedModifierSet.DarknessModifiers>()];
     public RangedModifierSet.DarknessModifiers? RangedDarkness
     {
